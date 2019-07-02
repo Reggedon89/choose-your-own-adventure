@@ -10,7 +10,7 @@ let drinks;
 let basement;
 let antique;
 
-let mernman;
+let merman;
 let tortureFam;
 let ghosts;
 let rndNum;
@@ -44,6 +44,72 @@ function monsterPicker() {
 }
 
 
+
+// These functions set up the monster logic at the end of the game
+
+function merMan() {
+    alert(
+      "Your group leaves the basement. Everyone is worried. You as a group decide it's best to leave. As you make your way back to your vehicles, you see a large shadow blocking the path."
+    );
+    alert(
+    "The creature is a morbid creature, as if a bulldog and fish had been combined in some experiment gone horribly wrong. It turns to your group with murder in it's eyes. It lunges at you in a terrible waddle. It is much faster than it looks."
+  );
+  merman = prompt("Do you stand your ground?");
+
+  if (merman === "yes" || merman === "Yes") {
+    alert(
+      "The creature is terribly strong and tears you apart limb from limb. Game Over"
+    );
+    gameOver(g);
+  } else if (merman === "No" || merman === "no") {
+    confirm(
+      "The creature is quick, but clumsy. You and your group skirts around the creature and manage to make it to your vehicles. You Survive."
+    );
+  }
+}
+
+function tortFam() {
+    alert(
+      "Your group leaves the basement. Everyone is worried. You as a group decide it's best to leave. As you make your way back to your vehicles, you see a large shadow blocking the path."
+    );
+    alert("You see the shadow of what looks like a small girl. You can't make out her features, but you can tell she's holding something");
+    tortureFam = prompt("Do you call out to it?")
+
+    if (tortureFam === "Yes" || tortureFam === "yes") {
+        alert(
+          "A little girl, severely decomposed, shambles in front. Your group looks on in shock and horror. The shock of her appearance,let her much larger father slip behind you, you fail to notice until his blade is buried in your back. Game over"
+        );
+        gameOver(g);
+    } else if (tortureFam === "No" || tortureFam === "no") {
+        confirm(
+          "the shadow doesn't see you. You and your friends quitely slip around it and make it to your cars. As the headlights turn on, you see several people. All badly decomposed, all weilding weapons. They shamble towards your cars. You speed off to safety. You Win."
+        );
+    }
+}
+
+function spectre() {
+    alert(
+      "Your group leaves the basement. Everyone is worried. You as a group decide it's best to leave. As you make your way back to your vehicles, you see a large shadow blocking the path."
+    );
+    alert(
+      "A spectre of a beautiful woman appears. She motions at the necklace around your neck. She appears to be the original owner."
+    );
+
+    ghosts = prompt("Do you give it back?");
+
+    if (ghosts === "yes" || ghosts === "Yes") {
+        confirm(
+          "The ghost smiles and fades into darkness. You and your friends escape."
+        );
+    } else if (ghosts === "no" || ghosts === "No") {
+        alert(
+          "The spectre becomes furious. Eyes darken and teeth enlongate. With incredible speed she rushes through you and rips your sould with it. Game over."
+        );
+        gameOver(g);
+    }
+}
+
+// Start Game
 
 function lowGas(){
 needGas = prompt(
@@ -140,6 +206,8 @@ if(playerState === 0){
 basementChoice();
 }
 
+// this takes the players choice, if they leave the room playerstate is increased and the player lives if not then the player dies here
+
 while(playerState === 1) {
     function yousaGunaDie(){
         dead = prompt("Do you leave your room?");
@@ -168,30 +236,7 @@ while(playerState === 1) {
         );
         yousaGunaDie();
      }
-
-
-
-
 }
-
-while(playerState === 2){
-    console.log("you made it to the last step");
-    playerState++
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //monster choice
 
@@ -268,7 +313,42 @@ function pointOfNoReturn() {
 }
 
 antiquesPicker();
-
 pointOfNoReturn();
-playerState = 1;
+playerState = 3;
+}
+
+while (playerState === 3) {
+    if (antique === "1") {
+      merMan();
+      playerState++;
+      gameOver(g);
+    } else if (antique === "2") {
+      tortFam();
+      playerState++;
+      gameOver(g);
+    } else if (antique === "3") {
+      spectre();
+      playerState++;
+      gameOver(g);
+    } 
+}
+
+// select from sleeping state
+while (playerState === 2) {
+
+        
+    if (rndMonster === 1) {
+        merMan();
+        playerState++;
+        gameOver(g);
+    }  else if (rndMonster === 2){
+        tortFam();
+        playerState++;
+        gameOver(g);
+    } else if (rndMonster ===3) {
+        spectre();
+        playerState++
+        gameOver(g);
+    }
+
 }
