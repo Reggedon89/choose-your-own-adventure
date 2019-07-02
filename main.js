@@ -15,7 +15,12 @@ let tortureFam;
 let ghosts;
 let rndNum;
 //this determines the players path later in the game
-let playerState = 1;
+let playerState = 0;
+let awake;
+let dead;
+//this determines what monster appears if the player falls asleep
+let rndMonster = monsterPicker();
+
 let person = prompt("First what is your name?");
 
 
@@ -33,13 +38,11 @@ function gameOver(g){
 
 
 function monsterPicker() {
-     mernman = 1;
-     tortureFam = 2;
-     ghosts = 3;
      rndNum = Math.floor(Math.random() * 3 + 1);
     
     return rndNum;
 }
+
 
 
 function lowGas(){
@@ -64,7 +67,6 @@ function stop4Gas() {
     responce = prompt(
       "The gas station attendant warns the group that ghosts haunts the cabin they are heading too. Do you heed his warning?"
     );
-    
     if (responce === "no" || responce=== "No") {
         alert("You continue on your way. The gas attendant was crazy");    
     } else if (responce === "Yes" || responce === "yes") {
@@ -85,7 +87,6 @@ function arriveCabin() {
     
     if(arrive === "yes" || arrive === "yes") {
         
-        alert("The player wakes up to an attack");
         playerState = 1;
         console.log(playerState);
     } else if (arrive === "no" || arrive === "No") {
@@ -96,8 +97,9 @@ function arriveCabin() {
         return alert("invalid choice");
     }
 }
-
+if (playerState === 0) {
 arriveCabin();
+}
 
 
 function drink(){
@@ -117,8 +119,9 @@ function drink(){
         }
     }
 
+if (playerState === 0){
 drink();
-
+}
 //monster appears
 
 function basementChoice() {
@@ -133,9 +136,66 @@ function basementChoice() {
     }
 } 
 
+if(playerState === 0){
 basementChoice();
+}
+
+while(playerState === 1) {
+    function yousaGunaDie(){
+        dead = prompt("Do you leave your room?");
+
+        if (dead === "yes" || dead === "Yes"){
+            alert(
+              "As you leave your room, fear parlyses you. An unknown terror Creeps behind you. As you turn around the creature tears you apart."
+            );
+            gameOver(g);
+        } else if (dead === "No" || dead === "no") {
+            alert(
+              "The lights are cut. You sit in pitch blackness. The door creaks open. Parylysed with fear you don't move, you don't breath. An impossibly heavy weight pounces on your chest. You're unable to breathe as sharp objects rips out your throat."
+            );
+            gameOver(g);
+        }
+
+        }
+    alert(" You wake from your slumber to the sounds of screams and terror.");
+
+     awake = prompt("Do you leave your room?")
+     if (awake === "yes" || awake === "Yes"){
+         playerState = 2;
+     } else if (awake === "no" || awake === "No"){
+        alert(
+          "You stay in your room as the sounds of a terrible monster makes quick work of your friends. Each one of them brutally and horribly torn apart. All is quiet."
+        );
+        yousaGunaDie();
+     }
+
+
+
+
+}
+
+while(playerState === 2){
+    console.log("you made it to the last step");
+    playerState++
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //monster choice
+
+while (playerState === 0){
 
 function antiquesPicker() {
     
@@ -160,33 +220,49 @@ function antiquesPicker() {
         alert("Invalid Choice")
     }
 
-    // return antique;
+    return antique;
 }
+
+
+// this section allow player to pick their fate
 
 function pointOfNoReturn() {
     let choose;
 
-    switch (antique){
-    case "1":
-        {
-       choose  =  prompt("Do you want to blow the conch?")
-         if (choose === "yes" || choose === "Yes") {
-        alert(
-          "You place the shell to your lips and give the shell a might blow. Your friends look on in horror. There is a loud cry in the distance"
-        );
-    } else if (choose === "no" || choose === "no") {
-        antiquesPicker();
-    }
-    break;
-    }
-    case "2":
-      choose = prompt("Do you want to read the words?");
-         if (choose === "yes" || choose === "Yes") {
-            alert(
-"The words seem to sear into your mind as you begin to read the latin words for all in the room to hear 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' The walls shudder, lights flicker. A low moan fills your hearts with dread."      );
-    } else if (choose === "no" || choose === "no") {
-      antiquesPicker();
-    }
+    switch (antique) {
+      case "1": {
+        choose = prompt("Do you want to blow the conch?");
+        if (choose === "yes" || choose === "Yes") {
+          alert(
+            "You place the shell to your lips and give the shell a might blow. Your friends look on in horror. There is a loud cry in the distance!"
+          );
+        } else if (choose === "no" || choose === "no") {
+          antiquesPicker();
+        }
+        break;
+      }
+      case "2": {
+        choose = prompt("Do you want to read the words?");
+        if (choose === "yes" || choose === "Yes") {
+          alert(
+            "The words seem to sear into your mind as you begin to read the latin words for all in the room to hear 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' The walls shudder, lights flicker. A low moan fills your hearts with dread!"
+          );
+        } else if (choose === "No" || choose === "no") {
+          antiquesPicker();
+        }
+        break;
+      }
+      case "3": {
+        choose = prompt("Do you put on the necklace?");
+        if (choose === "yes" || choose === "Yes") {
+          alert(
+            "As the chain of the necklace touches your skin, it burns with coldness. You feel suddenly drained and weak. Your friends look at you with concern. In the distance you hear a peircing wail!"
+          );
+        } else if (choose === "No" || choose === "no") {
+          antiquesPicker();
+        }
+        break;
+      }
     }
 
 }
@@ -194,5 +270,5 @@ function pointOfNoReturn() {
 antiquesPicker();
 
 pointOfNoReturn();
-
-
+playerState = 1;
+}
