@@ -6,8 +6,13 @@ let responce;
 let arrive;
 let needGas;
 let drinks;
+let basement;
+let mernman;
+let tortureFam;
+let ghosts;
+let rndNum;
 //this determines the players path later in the game
-let playerState = 0;
+let playerState = 1;
 let person = prompt("First what is your name?");
 
 
@@ -21,6 +26,17 @@ function gameOver(g){
     return ;
 }
 
+//This function picks a monster if the player state is set to 1
+
+
+function monsterPicker(playerState) {
+     mernman = 1;
+     tortureFam = 2;
+     ghosts = 3;
+     rndNum = Math.floor(Math.random() * 3 + 1);
+    
+    return rndNum;
+}
 
 
 function lowGas(needGas){
@@ -54,7 +70,7 @@ function stop4Gas(responce) {
     }
 }
 
-stop4Gas(responce);
+stop4Gas();
 
 function arriveCabin(arrive) {
     alert(
@@ -78,7 +94,7 @@ function arriveCabin(arrive) {
     }
 }
 
-arriveCabin(arrive);
+arriveCabin();
 
 
 function drink(drinks){
@@ -99,5 +115,19 @@ function drink(drinks){
     }
 
 drink();
+
+//monster appears
+
+function basementChoice(basement) {
+    basement = prompt ("Your friends are sitting around the fireplace when you hear a loud slam, the basement trap door has open up. Do you investigate with your friends?");
+    if (basement === "Yes" || basement === "yes"){
+        alert("Your group heads down to the spacious basement where a bunch of antiques are spread about")
+    } else if (basement === "no" || basement === "No") {
+        alert("You wait upstairs for your friends to investigate")
+        playerState = 1;
+    } else {
+        return alert("invalid choice");
+    }
+} 
 
 
