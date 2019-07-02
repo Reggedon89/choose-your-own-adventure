@@ -1,12 +1,15 @@
 
 
 
-let txt;
+
+
 let responce;
 let arrive;
 let needGas;
 let drinks;
 let basement;
+let antique;
+
 let mernman;
 let tortureFam;
 let ghosts;
@@ -29,7 +32,7 @@ function gameOver(g){
 //This function picks a monster if the player state is set to 1
 
 
-function monsterPicker(playerState) {
+function monsterPicker() {
      mernman = 1;
      tortureFam = 2;
      ghosts = 3;
@@ -39,7 +42,7 @@ function monsterPicker(playerState) {
 }
 
 
-function lowGas(needGas){
+function lowGas(){
 needGas = prompt(
   person +
     ", Your gas is getting low, your group is coming up to a run down gas station. Do you stop for gas?"
@@ -57,7 +60,7 @@ needGas = prompt(
 lowGas();
 
 
-function stop4Gas(responce) {
+function stop4Gas() {
     responce = prompt(
       "The gas station attendant warns the group that ghosts haunts the cabin they are heading too. Do you heed his warning?"
     );
@@ -72,7 +75,7 @@ function stop4Gas(responce) {
 
 stop4Gas();
 
-function arriveCabin(arrive) {
+function arriveCabin() {
     alert(
       "You and your friends arrive at the cabin. It is quiet and quaint. See the gas attendant was full of it."
     );
@@ -97,7 +100,7 @@ function arriveCabin(arrive) {
 arriveCabin();
 
 
-function drink(drinks){
+function drink(){
 
  drinks = prompt("Do you drink with your friends?");
 
@@ -118,7 +121,7 @@ drink();
 
 //monster appears
 
-function basementChoice(basement) {
+function basementChoice() {
     basement = prompt ("Your friends are sitting around the fireplace when you hear a loud slam, the basement trap door has open up. Do you investigate with your friends?");
     if (basement === "Yes" || basement === "yes"){
         alert("Your group heads down to the spacious basement where a bunch of antiques are spread about")
@@ -129,5 +132,67 @@ function basementChoice(basement) {
         return alert("invalid choice");
     }
 } 
+
+basementChoice();
+
+//monster choice
+
+function antiquesPicker() {
+    
+    antique = prompt(
+      "You see three items that stand out to you. A Conch Shell, a Old leather bound Diary, and a old looking necklace. Do you want to pick up one of these items? 1 for Conch, 2 for Diary, 3 for Necklace"
+    );
+    if (antique === "1") {
+         alert(
+        "An uncontrollable urge compels you to pick up the conch. You feel as if you should blow it. Yes of course you should."
+        
+      );
+    } else if (antique === "2") {
+        alert(
+          "The smell of old leather draws you to this ancient looking diary. You take it and are compelled to open it. As you begin to read the diary, it recounts the story of a young girl with a terrible father. The descriptions of pain and horror make your stomach turn. There is a latin phrase written. You are compelled to read it for your friends."
+        );
+    } else if (antique === "3") {
+        alert(
+          "The shine of the necklace catches your eye. You pick up the necklace and feel the quality of the workmanship in the piece. You can tell a lot of love and craftsmanship went into making it. It would look nice on you."
+        );
+    }
+    else {
+        alert("Invalid Choice")
+    }
+
+    // return antique;
+}
+
+function pointOfNoReturn() {
+    let choose;
+
+    switch (antique){
+    case "1":
+        {
+       choose  =  prompt("Do you want to blow the conch?")
+         if (choose === "yes" || choose === "Yes") {
+        alert(
+          "You place the shell to your lips and give the shell a might blow. Your friends look on in horror. There is a loud cry in the distance"
+        );
+    } else if (choose === "no" || choose === "no") {
+        antiquesPicker();
+    }
+    break;
+    }
+    case "2":
+      choose = prompt("Do you want to read the words?");
+         if (choose === "yes" || choose === "Yes") {
+            alert(
+"The words seem to sear into your mind as you begin to read the latin words for all in the room to hear 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' The walls shudder, lights flicker. A low moan fills your hearts with dread."      );
+    } else if (choose === "no" || choose === "no") {
+      antiquesPicker();
+    }
+    }
+
+}
+
+antiquesPicker();
+
+pointOfNoReturn();
 
 
